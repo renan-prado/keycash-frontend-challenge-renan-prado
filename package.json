@@ -11,6 +11,7 @@
   "dependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "axios": "^0.26.1",
     "core-js": "^3.6.5",
     "husky": "^7.0.4",
     "vue": "^2.6.11",
