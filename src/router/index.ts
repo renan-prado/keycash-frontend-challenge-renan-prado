@@ -24,4 +24,12 @@ const router = new VueRouter({
   routes,
 });
 
+const DEFAULT_TITLE = 'Keycash';
+
+router.afterEach((to: any) => {
+  Vue.nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE;
+  });
+});
+
 export default router;

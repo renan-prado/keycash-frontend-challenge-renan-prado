@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Teste"/>
+  <div class="v-home">
+    <Home />
+
+
+    <FilterItem>
+      Testeee
+    </FilterItem>
+
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Vue from 'vue'
+import { Home } from '@/components/templates';
+import { FilterItem } from '@/components/molecules';
 
-@Component({
+export default Vue.extend({
   components: {
-    HelloWorld,
-  },
-})
-
-export default class Home extends Vue {}
+    Home,
+    FilterItem,
+  }
+});
 </script>
