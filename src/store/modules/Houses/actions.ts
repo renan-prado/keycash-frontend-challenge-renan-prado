@@ -10,6 +10,9 @@ export default {
     store.commit('SET_SEARCH_BASE', houseList);
     store.commit('SET_SEARCH_RESULT', houseList);
 
+    store.commit('SET_INITIAL_FILTERS', houseList);
+
+
     // TODO: Gerar todos os filtros carregados
   },
 };
