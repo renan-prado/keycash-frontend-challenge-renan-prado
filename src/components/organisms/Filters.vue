@@ -3,11 +3,13 @@
     <FilterItem
       v-for="group in filterBase._fields"
       :key="group"
-      :title="group"
+      :title="getPtBrName(group)"
     >
       <FilterSlider
         :group="group"
-        :rangePrice="filterBase[group]"
+        :rangeName="getPtBrName(group)"
+        :rangeValue="filterBase[group]"
+        :unity="getUnity(group)"
         :currentRange="filterApplied[group]"
         :interval="filterBase[group][1] > 100000 ? 10000 : 1"
         @updateRange="updateRange"
@@ -20,6 +22,8 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex';
 import { FilterItem, FilterSlider } from '@/components/molecules';
+import { filterGroupListPtBr, filterGroupListUnity } from '@/utils';
+
 
 export default Vue.extend({
   components: { FilterItem, FilterSlider },
@@ -32,6 +36,12 @@ export default Vue.extend({
   methods: {
     updateRange(newRange: any) {
       this.$store.dispatch('Houses/UPDATE_FILTER', newRange);
+    },
+    getPtBrName(group: 'price'| 'usableArea' | 'bathrooms' | 'bedrooms' | 'parkingSpaces'): String {
+      return filterGroupListPtBr[group];
+    },
+    getUnity(group: 'price'| 'usableArea' | 'bathrooms' | 'bedrooms' | 'parkingSpaces'): String {
+      return filterGroupListUnity[group];
     }
   }
 })

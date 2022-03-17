@@ -77,11 +77,20 @@ export const filterGroupList: TFilterGroups[] = [
   'parkingSpaces',
 ];
 
-export const filterGroupListPtBr: String[] = [
-  'Preço',
-  'Área útil',
-  'Banheiros',
-  'Quartos',
-  'Vagas',
-];
+export const filterGroupListPtBr = {
+  price:  'Preço',
+  usableArea: 'Área útil',
+  bathrooms: 'Banheiros',
+  bedrooms: 'Quartos',
+  parkingSpaces: 'Vagas'
+};
+
+
+export const filterGroupListUnity = {
+  price:  'R$',
+  usableArea: 'm²',
+  bathrooms: 'un',
+  bedrooms: 'un',
+  parkingSpaces: 'un'
+};
 

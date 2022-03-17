@@ -1,16 +1,20 @@
 <template>
   <div class="o-filter-slider">
     <VueSlider
-      :min="rangePrice[0]"
-      :max="rangePrice[1]"
+      :min="rangeValue[0]"
+      :max="rangeValue[1]"
       :interval="interval"
       :adsorb="true"
-      v-model="currentRange"
+      v-model="range"
       @change="updateRange"
     />
     <span>
-      Buscar {{ rangeName }} de <br />
-      <b> {{ rangeMessage }} </b>
+      <p> Buscar por <b>{{ rangeName.toLowerCase() }}</b> de </p>
+      <label class="d-flex flex-center">
+        <b v-if="unity === 'R$'">{{ unity }}</b>
+        <p> <b>{{ range[0] }}</b> até <b>{{ range[1] }}</b></p>
+        <b v-if="unity !== 'R$'">/ {{ unity }}</b>
+      </label>
     </span>
   </div>
 </template>
@@ -21,13 +25,18 @@ import VueSlider from 'vue-slider-component';
 import './slider.css';
 
 export default Vue.extend({
-  props: ['rangePrice', 'rangeName', 'rangeMessage', 'interval', 'group', 'currentRange'],
+  props: ['rangeValue', 'rangeName', 'unity', 'interval', 'group', 'currentRange'],
   methods: {
     updateRange(newRange: number[]):void {
       this.$emit('updateRange', {
         range: newRange,
         group: this.group,
       });
+    }
+  },
+  data: function () {
+    return {
+      range: this.currentRange,
     }
   },
   components: {
@@ -41,4 +50,11 @@ export default Vue.extend({
 .o-filter-slider span
   display block
   padding-top 20px
+  p
+    margin 5px 0
+  label
+    gap 5px
+  b
+    color #ff0094
+
 </style>
