@@ -25,10 +25,12 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 .a-dropdown
   border 1px solid #eee
-  box-shadow 0px 0px 10px 1px #f5f5f5
+  box-shadow 0px 0px 10px 1px #aaa
   border-radius 10px
   padding 14px
   background-color #fff
+  z-index 1
+  position relative
 
 .a-dropdown__overlay
   width 100%

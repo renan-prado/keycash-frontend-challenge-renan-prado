@@ -1,14 +1,13 @@
 <template>
-  <div class="v-home">
-    <Home />
+  <div class="v-home d-flex flex-col flex-center">
 
-    <Filters />
+    <section class="v-home__filters">
+      <Filters />
+    </section>
 
-    <router-link to="/details" >teste</router-link>
-
-    <br><br>
-
-    {{ searchResult }}
+    <section class="v-home__shelf">
+      <Shelf :items="searchResult" />
+    </section>
 
   </div>
 </template>
@@ -18,12 +17,18 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex';
 import { IFilter, ISearchHouses } from '@/store/modules/Houses/types';
 import { Home } from '@/components/templates';
-import { Filters } from '@/components/organisms';
+import { ShelfItem } from '@/components/molecules';
+import { Filters, Shelf } from '@/components/organisms';
+import { ImageCarousel, HouseInfo } from '@/components/atoms';
 
 export default Vue.extend({
   components: {
     Home,
     Filters,
+    ImageCarousel,
+    HouseInfo,
+    ShelfItem,
+    Shelf,
   },
   computed: {
     ...mapGetters({
@@ -70,3 +75,10 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="stylus" scoped>
+.v-home
+  padding 30px 0
+  gap 40px
+
+</style>
