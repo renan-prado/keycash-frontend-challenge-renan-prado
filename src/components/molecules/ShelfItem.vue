@@ -6,17 +6,20 @@
 
     <div class="m-shelf-item__divisor" />
 
-    <h3> {{ address }} </h3>
-    <h2> R$ {{ price }} </h2>
+    <router-link :to="`/details/${id}`" class="d-flex flex-col">
+      <h3> {{ address }} </h3>
+      <h2> R$ {{ price }} </h2>
 
-    <div class="m-shelf-item__divisor" />
+      <div class="m-shelf-item__divisor" />
 
-    <div class="m-shelf-item__infos d-flex">
-      <HouseInfo :image="`/usableArea.svg`" :text="usableArea < 10 ? `0${usableArea}` : usableArea" />
-      <HouseInfo :image="`/bathrooms.svg`" :text="bathrooms < 10 ? `0${bathrooms}` : bathrooms" />
-      <HouseInfo :image="`/bedrooms.svg`" :text="bedrooms < 10 ? `0${bedrooms}` : bedrooms" />
-      <HouseInfo :image="`/parkingSpaces.svg`" :text="parkingSpaces < 10 ? `0${parkingSpaces}` : parkingSpaces" />
-    </div>
+      <div class="m-shelf-item__infos d-flex">
+        <HouseInfo :image="`/usableArea.svg`" :text="usableArea < 10 ? `0${usableArea}` : usableArea" />
+        <HouseInfo :image="`/bathrooms.svg`" :text="bathrooms < 10 ? `0${bathrooms}` : bathrooms" />
+        <HouseInfo :image="`/bedrooms.svg`" :text="bedrooms < 10 ? `0${bedrooms}` : bedrooms" />
+        <HouseInfo :image="`/parkingSpaces.svg`" :text="parkingSpaces < 10 ? `0${parkingSpaces}` : parkingSpaces" />
+      </div>
+
+    </router-link>
 
   </div>
 </template>
@@ -29,7 +32,7 @@ import {
 } from '@/components/atoms';
 
 export default Vue.extend({
-  props: ['price', 'address', 'usableArea', 'bathrooms', 'bedrooms', 'parkingSpaces', 'images'],
+  props: ['price', 'address', 'usableArea', 'bathrooms', 'bedrooms', 'parkingSpaces', 'images', 'id'],
   components: {
     ImageCarousel,
     HouseInfo,
@@ -58,7 +61,7 @@ export default Vue.extend({
 
 .m-shelf-item__infos
   justify-content space-between
-  margin-top 20px
+  margin-top 10px
 
 .m-shelf-item__divisor
   margin 10px 0

@@ -50,6 +50,7 @@ h3,h4,span,label,a
 
 a
   display flex
+  text-decoration none
 
 .w-100
   width 100%

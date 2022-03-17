@@ -3,6 +3,7 @@
     <ShelfItem
       v-for="item in items"
       :key="item.id"
+      :id="item.id"
       :price="item.price"
       :address="item.address.formattedAddress"
       :bathrooms="item.bathrooms"
