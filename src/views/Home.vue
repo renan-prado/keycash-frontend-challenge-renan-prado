@@ -2,123 +2,71 @@
   <div class="v-home">
     <Home />
 
-    <FilterItem title="Cor">
-      Testeee
-    </FilterItem>
+    <Filters />
 
     <router-link to="/details" >teste</router-link>
 
     <br><br>
 
+    {{ searchResult }}
 
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { IFilter, ISearchHouses } from '@/store/modules/Houses/types';
 import { mapGetters } from 'vuex';
+import { IFilter, ISearchHouses } from '@/store/modules/Houses/types';
 import { Home } from '@/components/templates';
-import { FilterItem } from '@/components/molecules';
+import { Filters } from '@/components/organisms';
 
 export default Vue.extend({
   components: {
     Home,
-    FilterItem,
+    Filters,
   },
-   computed: {
+  computed: {
     ...mapGetters({
-        filterApplied: 'Houses/GET_FILTERS_APPLIED',
-        searchBase: 'Houses/GET_SEARCH_BASE',
-        searchResult: 'Houses/GET_SEARCH_RESULT',
+      filterApplied: 'Houses/GET_FILTERS_APPLIED',
+      searchBase: 'Houses/GET_SEARCH_BASE',
+      searchResult: 'Houses/GET_SEARCH_RESULT',
     }),
   },
   watch: {
-    filterApplied(filterApplied: IFilter[]) {
-
+    filterApplied(filterApplied: any) {
       let searchFiltered: ISearchHouses[] = this.searchBase;
 
-      searchFiltered = this.filterCheckboxBy('bathrooms', searchFiltered, filterApplied);
-      searchFiltered = this.filterCheckboxBy('bedrooms', searchFiltered, filterApplied);
-      searchFiltered = this.filterCheckboxBy('parkingSpaces', searchFiltered, filterApplied);
-      searchFiltered = this.filterSliderBy('price', searchFiltered, filterApplied);
-      searchFiltered = this.filterSliderBy('usableArea', searchFiltered, filterApplied);
+      filterApplied._fields
+        .forEach((group: String) => {
+          searchFiltered = this.filterItemsBy(group, searchFiltered, filterApplied);
+        });
 
       this.$store.commit('Houses/SET_SEARCH_RESULT', searchFiltered);
     },
   },
   methods: {
-    filterCheckboxBy(
-      group: 'bathrooms' | 'bedrooms' | 'parkingSpaces',
+    filterItemsBy(
+      group: String,
       houseList: ISearchHouses[],
-      filterApplied: IFilter[]
+      filterApplied: any
     ): ISearchHouses[] {
 
-      let houseListReturn = houseList;
-
-      const filterValues = filterApplied
-        .filter((filter) => filter.group === group)
-        .map((filter) => String(filter.value));
+      const filterValues = filterApplied[String(group)];
+      const [firstValue, lastValue] = filterValues;
 
       if (filterValues.length) {
-        houseListReturn = houseList
-          .filter((house) =>
-            filterValues.includes(String(house[group])));
+        houseList = houseList
+          .filter((house: any) =>
+            house[String(group)] >= firstValue &&
+            house[String(group)] <= lastValue
+          );
       }
 
-      return houseListReturn;
-    },
-    filterSliderBy(
-      group: 'price' | 'usableArea',
-      houseList: ISearchHouses[],
-      filterApplied: IFilter[]
-    ): ISearchHouses[] {
-
-      let houseListReturn = houseList;
-
-      const filterValues = filterApplied
-        .filter((filter) => filter.group === group)
-        .map((filter) => filter.value);
-
-      if (filterValues.length) {
-        const [filterValue] = filterValues
-
-        houseListReturn = houseList.filter((house) =>
-          house.price >= Number(filterValue[0]) &&
-          house.price <= Number(filterValue[1])
-        );
-      }
-
-      return houseListReturn;
+      return houseList;
     }
   },
   mounted() {
     this.$store.dispatch('Houses/FETCH_HOUSES');
-
-    setTimeout(() => {
-      // this.$store.commit('Houses/TOGGLE_FILTER', {
-      //   group: 'bathrooms',
-      //   value: 2
-      // });
-
-      // this.$store.commit('Houses/TOGGLE_FILTER', {
-      //   group: 'bedrooms',
-      //   value: 2
-      // });
-
-      // this.$store.commit('Houses/TOGGLE_FILTER', {
-      //   group: 'parkingSpaces',
-      //   value: 1
-      // });
-
-      this.$store.commit('Houses/TOGGLE_FILTER', {
-        group: 'price',
-        value: [800000, 1100000]
-      });
-
-    }, 3000);
-
-
   },
 });
 </script>

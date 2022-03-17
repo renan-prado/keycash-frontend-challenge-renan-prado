@@ -3,7 +3,7 @@
     <VueSlider
       :min="rangePrice[0]"
       :max="rangePrice[1]"
-      :interval="10"
+      :interval="interval"
       :adsorb="true"
       v-model="currentRange"
       @change="updateRange"
@@ -21,16 +21,13 @@ import VueSlider from 'vue-slider-component';
 import './slider.css';
 
 export default Vue.extend({
-  props: ['rangePrice', 'rangeName', 'rangeMessage'],
-  data: () => ({
-    currentRange: [0, 100]
-  }),
-  mounted() {
-    this.currentRange = this.rangePrice;
-  },
+  props: ['rangePrice', 'rangeName', 'rangeMessage', 'interval', 'group', 'currentRange'],
   methods: {
     updateRange(newRange: number[]):void {
-      this.$emit('updateRange', newRange);
+      this.$emit('updateRange', {
+        range: newRange,
+        group: this.group,
+      });
     }
   },
   components: {

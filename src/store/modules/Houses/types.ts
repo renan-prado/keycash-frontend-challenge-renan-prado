@@ -19,4 +19,5 @@ export interface ISearchHouses {
 export interface IFilter {
   group: String
   value: String | Number[]
+  name?: String
 }

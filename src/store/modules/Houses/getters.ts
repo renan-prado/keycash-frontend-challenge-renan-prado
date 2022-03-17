@@ -11,4 +11,7 @@ export default {
   GET_FILTERS_APPLIED(state: State): IFilter[] {
     return state.filtersApplied;
   },
+  GET_FILTERS_BASE(state: State): IFilter[] {
+    return state.filtersBase;
+  },
 };

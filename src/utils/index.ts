@@ -35,39 +35,53 @@ export type TFilterGroups = 'price' | 'bathrooms' | 'bedrooms' | 'parkingSpaces'
 
 export const buildSliderFilter = (filterList: IFilter[]) => {
 
-  let priceItems = getGroupInList(filterList, 'price');
-  let usableAreaItems = getGroupInList(filterList, 'usableArea');
+  let filterOrganize:any = {
+    _fields: [],
+  };
 
-  priceItems = priceItems.sort((a, b) => Number(a.value) - Number(b.value));
-  usableAreaItems = usableAreaItems.sort((a, b) => Number(a.value) - Number(b.value));
+  // convert array to object
+  filterList.forEach((filter: IFilter) => {
+    const group = String(filter.group);
+    if (!filterOrganize[group]) {
+      filterOrganize[group] = []
+      filterOrganize._fields.push(filter.group);
+    }
 
-  filterList = removeGroupInList(filterList, 'price');
-  filterList = removeGroupInList(filterList, 'usableArea');
-
-  filterList.push({
-    group: 'price',
-    value: [
-      Number(priceItems[0].value),
-      Number(priceItems[priceItems.length - 1].value)
-    ],
+    filterOrganize[group].push(filter)
+    filterOrganize[group] = filterOrganize[group]
+      .sort((a:IFilter, b:IFilter) =>
+        Number(a.value) - Number(b.value));
   });
 
-  filterList.push({
-    group: 'usableArea',
-    value: [
-      Number(usableAreaItems[0].value),
-      Number(usableAreaItems[usableAreaItems.length - 1].value)
-    ],
+  // getMinAndMaxValues
+  filterOrganize._fields.forEach((group: any) => {
+    const groupList = filterOrganize[group];
+    const [minValue] = groupList;
+    const maxValue = groupList[groupList.length - 1];
+
+    filterOrganize[group] = {
+      group,
+      name: minValue.name,
+      value: [Number(minValue.value),  Number(maxValue.value)]
+    }
   });
 
-  return filterList
+  return filterOrganize;
 };
 
 export const filterGroupList: TFilterGroups[] = [
   'price',
+  'usableArea',
   'bathrooms',
   'bedrooms',
   'parkingSpaces',
-  'usableArea'
+];
+
+export const filterGroupListPtBr: String[] = [
+  'Preço',
+  'Área útil',
+  'Banheiros',
+  'Quartos',
+  'Vagas',
 ];
 
