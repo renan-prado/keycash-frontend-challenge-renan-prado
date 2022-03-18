@@ -17,5 +17,5 @@ export interface IServiceResponsex {
 }
 
 export interface IService {
-  search: <T>() => Promise<T[]>
+  search: <T>(url: string) => Promise<T[]>
 }

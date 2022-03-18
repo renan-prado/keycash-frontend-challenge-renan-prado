@@ -34,7 +34,7 @@ export default Vue.extend({
     }),
   },
   methods: {
-    updateRange(newRange: any) {
+    updateRange(newRange: Number[]) {
       this.$store.dispatch('Houses/UPDATE_FILTER', newRange);
     },
     getPtBrName(group: 'price'| 'usableArea' | 'bathrooms' | 'bedrooms' | 'parkingSpaces'): String {

@@ -11,7 +11,16 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['image', 'text'],
+  props: {
+    image: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+  },
 })
 </script>
 

@@ -43,5 +43,4 @@ export default Vue.extend({
 
 .a-dropdown__content
   z-index 2
-
 </style>

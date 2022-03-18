@@ -1,15 +1,16 @@
 import { ActionContext } from 'vuex';
 import houseFactory from '@/factory/HouseFactory';
 import { State } from './state';
+import { ISearchHouses } from './types';
 import { filterGroupList } from '@/utils';
 
 export default {
   async FETCH_HOUSES(store: ActionContext<State, State>): Promise<void> {
     const houseInstance = houseFactory.createInstance();
-    let houseList = await houseInstance.search();
+    let houseList = await houseInstance.search<ISearchHouses>();
 
-    houseList = houseList.filter((house: any) => house.publish);
-    houseList = houseList.filter((house: any) => house.address.formattedAddress.indexOf('??') <= 0);
+    houseList = houseList.filter((house) => house.publish);
+    houseList = houseList.filter((house) => house.address.formattedAddress.indexOf('??') <= 0);
     houseList = houseList.sort((a:any, b:any) =>  b.price - a.price);
 
     store.commit('SET_SEARCH_BASE', houseList);

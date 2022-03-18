@@ -1,6 +1,8 @@
 import { IService } from '../services/types';
 import { IHouseRepository } from './types';
 
+const URL_API = 'http://5e148887bce1d10014baea80.mockapi.io/keycash/challenge';
+
 class HouseRepository implements IHouseRepository {
   service: IService;
 
@@ -9,7 +11,7 @@ class HouseRepository implements IHouseRepository {
   }
 
   async search<IRepositoryResponse>(): Promise<IRepositoryResponse[]> {
-    const houses = await this.service.search<IRepositoryResponse>();
+    const houses = await this.service.search<IRepositoryResponse>(URL_API);
     return houses;
   }
 }

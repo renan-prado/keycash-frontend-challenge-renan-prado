@@ -16,20 +16,27 @@ import { Carousel, Slide } from 'vue-carousel';
 
 export default Vue.extend({
   components: { Carousel, Slide },
-  props: ['images'],
+  props: {
+    images: {
+      type: Array,
+      required: true,
+    },
+  },
 })
 </script>
 
 
 <style lang="stylus">
+// !importants usados para sobrepor css inline
+
 .VueCarousel-dot-container
-  margin-top 0 !important // sobrepor css inline
+  margin-top 0 !important
   button
-    margin-top 0 !important // sobrepor css inline
-    padding 2px !important // sobrepor css inline
-    width 7px !important // sobrepor css inline
-    height 7px !important // sobrepor css inline
+    margin-top 0 !important
+    padding 2px !important
+    width 7px !important
+    height 7px !important
 
     &[aria-selected="true"]
-      background-color #ff0094 !important // sobrepor css inline
+      background-color #ff0094 !important
 </style>
