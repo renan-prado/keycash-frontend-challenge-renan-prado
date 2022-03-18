@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
     component: Home,
   },
   {
-    path: '/details',
+    path: '/details/:id',
     name: 'Details',
     component: Details,
   },
@@ -22,6 +22,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+const DEFAULT_TITLE = 'Keycash';
+
+router.afterEach((to: any) => {
+  Vue.nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE;
+  });
 });
 
 export default router;

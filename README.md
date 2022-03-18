@@ -1,4 +1,5 @@
-# keycash-frontend-challenge-renan-prado
+# Welcome to Keycash Challenge!
+*developed by: Renan Prado*
 
 ## Project setup
 ```
@@ -6,6 +7,7 @@ yarn install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 yarn serve
 ```
@@ -15,15 +17,14 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Technologies and methodologies used
+- Vue 2
+- Vuex
+- TypeScript
+- Stylus
+- Axios
+- Husky
+- Commitlint
+- Eslint
+- Design Factory
+- Atomic Design

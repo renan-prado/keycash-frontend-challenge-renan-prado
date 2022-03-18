@@ -4,4 +4,3 @@ const houseFactoryInstance = houseFactory.createInstance();
 
 const houses = houseFactoryInstance.search();
 
-console.log(houses);
