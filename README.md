@@ -1,6 +1,8 @@
 # Welcome to Keycash Challenge!
 *developed by: Renan Prado*
 
+![Screenshot](https://i.ibb.co/VvyzsLV/keycash1.png)
+
 ## Project setup
 ```
 yarn install
@@ -28,3 +30,5 @@ yarn build
 - Eslint
 - Design Factory
 - Atomic Design
+- BEM
+
