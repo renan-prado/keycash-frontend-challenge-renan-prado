@@ -14,4 +14,7 @@ export default {
   GET_FILTERS_BASE(state: State): IFilter[] {
     return state.filtersBase;
   },
+  GET_LOADING(state: State): Boolean {
+    return state.loading;
+  },
 };

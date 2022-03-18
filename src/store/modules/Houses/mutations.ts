@@ -4,6 +4,7 @@ import { ISearchHouses, IFilter } from './types';
 
 const debounceSetFilter = throttle(1000, false, (state: State, filter: any) => {
   state.filtersApplied = filter;
+  state.loading = false;
 });
 
 export default {
@@ -18,5 +19,8 @@ export default {
   },
   SET_FILTER_APPLIED(state: State, filter: IFilter[]): void {
     debounceSetFilter(state, filter);
+  },
+  SET_LOADING(state: State, value: Boolean): void {
+    state.loading = value;
   },
 };

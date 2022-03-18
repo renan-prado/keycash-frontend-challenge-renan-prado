@@ -1,6 +1,8 @@
 <template>
   <div class="v-home d-flex flex-col flex-center">
 
+    <Loading />
+
     <section class="v-home__filters max-w-100">
       <Filters />
     </section>
@@ -8,6 +10,7 @@
     <section class="v-home__shelf">
       <Shelf :items="searchResult" />
     </section>
+
 
   </div>
 </template>
@@ -19,14 +22,13 @@ import { IFilter, ISearchHouses } from '@/store/modules/Houses/types';
 import { Home } from '@/components/templates';
 import { ShelfItem } from '@/components/molecules';
 import { Filters, Shelf } from '@/components/organisms';
-import { ImageCarousel, HouseInfo } from '@/components/atoms';
+import { Loading } from '@/components/atoms';
 
 export default Vue.extend({
   components: {
     Home,
     Filters,
-    ImageCarousel,
-    HouseInfo,
+    Loading,
     ShelfItem,
     Shelf,
   },

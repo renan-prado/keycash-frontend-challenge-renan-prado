@@ -6,6 +6,8 @@ import { filterGroupList } from '@/utils';
 
 export default {
   async FETCH_HOUSES(store: ActionContext<State, State>): Promise<void> {
+    store.commit('SET_LOADING', true);
+
     const houseInstance = houseFactory.createInstance();
     let houseList = await houseInstance.search<ISearchHouses>();
 

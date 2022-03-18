@@ -5,11 +5,13 @@ export interface State {
   searchResult: ISearchHouses[]
   filtersBase: any
   filtersApplied: any
+  loading: Boolean
 }
 
 export const state: State = {
   searchBase: [],
   searchResult: [],
   filtersBase: {},
-  filtersApplied: {}
+  filtersApplied: {},
+  loading: false
 };
