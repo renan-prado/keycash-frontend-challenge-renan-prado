@@ -18,6 +18,7 @@ export default {
     state.filtersBase = filter;
   },
   SET_FILTER_APPLIED(state: State, filter: IFilter[]): void {
+    state.loading = true;
     debounceSetFilter(state, filter);
   },
   SET_LOADING(state: State, value: Boolean): void {

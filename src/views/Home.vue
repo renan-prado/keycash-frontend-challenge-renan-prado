@@ -1,16 +1,15 @@
 <template>
   <div class="v-home d-flex flex-col flex-center">
 
-    <Loading />
-
     <section class="v-home__filters max-w-100">
       <Filters />
     </section>
 
-    <section class="v-home__shelf">
-      <Shelf :items="searchResult" />
+    <section class="v-home__shelf" v-show="!loading">
+      <Shelf :items="searchResult"  />
     </section>
 
+    <Loading />
 
   </div>
 </template>
@@ -37,6 +36,7 @@ export default Vue.extend({
       filterApplied: 'Houses/GET_FILTERS_APPLIED',
       searchBase: 'Houses/GET_SEARCH_BASE',
       searchResult: 'Houses/GET_SEARCH_RESULT',
+      loading: 'Houses/GET_LOADING',
     }),
   },
   watch: {
