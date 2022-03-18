@@ -1,7 +1,7 @@
 <template>
   <div class="v-home d-flex flex-col flex-center">
 
-    <section class="v-home__filters">
+    <section class="v-home__filters max-w-100">
       <Filters />
     </section>
 

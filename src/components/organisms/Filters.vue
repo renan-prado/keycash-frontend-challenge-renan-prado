@@ -1,5 +1,5 @@
 <template>
-  <div class="o-filters d-flex flex-center">
+  <div class="o-filters d-flex flex-center max-w-100">
     <FilterItem
       v-for="group in filterBase._fields"
       :key="group"
@@ -47,8 +47,27 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .o-filters
   gap: 10px
+
+
+@media screen and (max-width: 768px)
+  .o-filters.flex-center
+    flex-wrap: wrap;
+
+    .a-label-filter
+      display flex
+
+    .a-label-filter[name="Área útil"]
+      min-width 90px
+
+    .a-dropdown
+      position fixed
+      left 50%
+      width 200px
+      transform translateX(-50%)
+
+
 </style>
 

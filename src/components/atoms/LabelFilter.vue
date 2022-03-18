@@ -3,6 +3,7 @@
     class="a-label-filter d-inline-block transition"
     :class="{'a-label-filter--active': active}"
     @click="$emit('main-click')"
+    :name="text"
   >
     <span class="transition"> {{ text }} </span>
     <img class="transition" src="@/assets/arrow-down.svg" />

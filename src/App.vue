@@ -30,6 +30,8 @@ html, body, a
 
 #content
   margin-top 60px // header space
+  padding 0 5%
+  padding-bottom 100px
 
 #app
   -webkit-font-smoothing antialiased
@@ -51,6 +53,12 @@ h3,h4,span,label,a
 a
   display flex
   text-decoration none
+
+.max-w-100
+  max-width 100%
+
+.overflow-auto
+  overflow auto
 
 .w-100
   width 100%
